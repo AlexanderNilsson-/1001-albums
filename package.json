@@ -1,0 +1,29 @@
+{
+    "name": "1001-albums-you-must-hear-before-you-die",
+    "version": "1.0.0",
+    "description": "Randomly selects 1 album each day",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon -L ./server/index.js",
+        "start": "node ./server/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "browserslist": "last 2 versions, ie 11",
+    "dependencies": {
+        "cron": "^1.8.2",
+        "eslint-plugin-react": "^7.1.0",
+        "jsx-loader": "0.13.2",
+        "koa": "^2.0.0",
+        "koa-bodyparser": "4.2.1",
+        "pg": "7.18.1",
+        "sequelize": "5.21.3",
+        "socket.io": "2.2.0"
+    },
+    "devDependencies": {
+        "eslint": "^3.19.0",
+        "eslint-24hr": "1.0.5",
+        "nodemon": "^1.18.11"
+    }
+}

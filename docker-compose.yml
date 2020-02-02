@@ -1,0 +1,38 @@
+version: "2.2"
+services:
+
+    1001-albums:
+        build: .
+        ports:
+            - "7000:80"
+        volumes:
+            - ./:/usr/src/app
+            - /usr/src/app/node_modules # Remove this if you have pure JS dependencies
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            - PORT=80
+            - LOG_LEVEL=verbose
+            - NODE_ENV=developer
+            - DATA_FOLDER=/data
+            - POSTGRES_PASSWORD=tjenatjena
+            - POSTGRES_HOST=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PORT=5432
+
+    postgres:
+        image: postgres
+        volumes:
+            - ./data/postgres:/var/lib/postgresql/data
+        mem_limit: 100M
+        ports:
+            - 5557:5432
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=tjenatjena
+        healthcheck:
+            test: ["CMD", "pg_isready", "-q", "-d", "1001-albums", "-U", "postgres"]
+            interval: 10s
+            timeout: 10s
+            retries: 10
